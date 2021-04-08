@@ -1,0 +1,26 @@
+{
+  "dependencies": {
+    "axios": "^0.21.1",
+    "qs": "^6.10.1"
+  },
+  "name": "axios",
+  "version": "1.0.0",
+  "main": "./dist/index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/axmine/axios.git"
+  },
+  "keywords": [
+    "axios"
+  ],
+  "author": "Axmine",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/axmine/axios/issues"
+  },
+  "homepage": "https://github.com/axmine/axios#readme",
+  "description": ""
+}
