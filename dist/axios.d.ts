@@ -16,6 +16,7 @@ export declare class ErrorMessageType {
     503: string;
     504: string;
     505: string;
+    [key: number]: string;
 }
 export declare class OptionType {
     baseURL: string;

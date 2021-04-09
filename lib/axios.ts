@@ -2,7 +2,6 @@ import axios, { AxiosInstance } from 'axios';
 import * as Qs from 'qs';
 
 function getType (data) { return Object.prototype.toString.call(data).slice(8, -1).toLowerCase() }
-
 export class ResultKeysType {
   code: string;
   result: string;
@@ -21,6 +20,7 @@ export class ErrorMessageType {
   503: string;
   504: string;
   505: string;
+  [key: number]: string;
 }
 export class OptionType {
   baseURL: string;
@@ -28,7 +28,6 @@ export class OptionType {
   formatKeys: ResultKeysType;
   useJson?: boolean;
   timeout?: number;
-  // errorMessage?: Record<number, string>
   errorMessage?: ErrorMessageType
 }
 
@@ -57,31 +56,21 @@ export class ConfigType {
   [key: string]: unknown;
 }
 
-// import errorMessage from './errorMessage';
 const errorMessage: ErrorMessageType = {
   400: '请求发生错误，请联系工程师（400）',
-  401: '登陆信息失效，请重新登录（401）', // token无效，需要登录
-  402: '您的登录信息已过期（402）', // token过期，请求刷新token
-  403: '你没有足够的权限访问该资源（403）', // token权限不足，访问被禁止
+  401: '登陆信息失效，请重新登录（401）',
+  402: '您的登录信息已过期（402）',
+  403: '你没有足够的权限访问该资源（403）',
   404: '请求的资源不存在（404）',
-  405: '服务器拒绝了你的请求（405）', // 禁用请求中指定的方法
-  500: '请求错误，请联系工程师（500）', // 服务器遇到错误，无法完成请求
-  501: '请求异常，请联系工程师（501）', // 服务器不具备完成请求的功能
-  502: '数据异常，请联系工程师（502）', // 从服务器收到无效的响应
-  503: '服务繁忙，请稍候再试（503）', // 服务器超载或停机维护，暂时状态
-  504: '连接超时，请稍候再试（504）', // 未接收到服务器的响应
-  505: '不受支持的请求，请联系工程师（505）' // http版本不受支持
+  405: '服务器拒绝了你的请求（405）',
+  500: '请求错误，请联系工程师（500）',
+  501: '请求异常，请联系工程师（501）',
+  502: '数据异常，请联系工程师（502）',
+  503: '服务繁忙，请稍候再试（503）',
+  504: '连接超时，请稍候再试（504）',
+  505: '不受支持的请求，请联系工程师（505）'
 }
 
-// export const AxiosDataType = {
-//   ErrorMessageType,
-//   ResultKeysType,
-//   OptionType,
-//   ResultType,
-//   ResponseType,
-//   ConfigOptionType,
-//   ConfigType,
-// }
 export class Axios {
   private http: AxiosInstance;
   private responseData: ResponseType;
