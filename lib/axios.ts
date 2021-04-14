@@ -79,7 +79,7 @@ export class Axios {
     useJson: true,
     formatKeys: { code: 'code', result: 'result', message: 'message' } as ResultKeysType,
     successCode: [],
-    baseURL: '/',
+    baseURL: '/haha',
     timeout: 10000,
     errorMessage
   };
@@ -158,14 +158,18 @@ export class Axios {
         message = response.data[k.message] || ''
       } else {
         // 如果data不是对象，则说明后台未按规范返回数据，报错
-        responseData.status = 502
+        if (!this.initOptionData.errorMessage[responseData.status]) {
+          responseData.status = 502
+        }
         code = -1
         result = { error: data }
         message = type === 'success' ? '响应错误，未获取预期数据' : message
       }
       Object.assign(resultData, { code, result, message })
     } else {
-      responseData.status = 502
+      if (!this.initOptionData.errorMessage[responseData.status]) {
+        responseData.status = 502
+      }
       resultData.code = -1
       resultData.result = { error: data }
       resultData.message = `响应错误，未获取预期数据(${responseData.status})`

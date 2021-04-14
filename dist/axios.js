@@ -114,7 +114,7 @@ var Axios = (function () {
             useJson: true,
             formatKeys: { code: 'code', result: 'result', message: 'message' },
             successCode: [],
-            baseURL: '/',
+            baseURL: '/haha',
             timeout: 10000,
             errorMessage: errorMessage
         };
@@ -193,7 +193,9 @@ var Axios = (function () {
                 message = response.data[k.message] || '';
             }
             else {
-                responseData.status = 502;
+                if (!this.initOptionData.errorMessage[responseData.status]) {
+                    responseData.status = 502;
+                }
                 code = -1;
                 result = { error: data };
                 message = type === 'success' ? '响应错误，未获取预期数据' : message;
@@ -201,7 +203,9 @@ var Axios = (function () {
             Object.assign(resultData, { code: code, result: result, message: message });
         }
         else {
-            responseData.status = 502;
+            if (!this.initOptionData.errorMessage[responseData.status]) {
+                responseData.status = 502;
+            }
             resultData.code = -1;
             resultData.result = { error: data };
             resultData.message = "\u54CD\u5E94\u9519\u8BEF\uFF0C\u672A\u83B7\u53D6\u9884\u671F\u6570\u636E(" + responseData.status + ")";
